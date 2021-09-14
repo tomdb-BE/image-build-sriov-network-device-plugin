@@ -18,8 +18,7 @@ RUN make clean && make build
 # Create the sriov-network-device-plugin image
 FROM ${UBI_IMAGE}
 WORKDIR /
-RUN yum update -y          && \
-    yum install -y hwdata  && \
+RUN yum install -y hwdata  && \
     rm -rf /var/cache/yum
 COPY --from=builder /go/sriov-network-device-plugin/build/sriovdp /usr/bin/
 COPY --from=builder /go/sriov-network-device-plugin/images/entrypoint.sh /
